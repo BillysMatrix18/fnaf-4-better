@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nightmare's Descent Prototype</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main id="app" class="view-center" data-focus="center">
+    <header class="hud">
+      <div id="clock">12:00 AM</div>
+      <div id="status">Listen...</div>
+    </header>
+
+    <section id="scene">
+      <div id="roomLabel">Bedroom</div>
+      <div id="fearOverlay"></div>
+      <div id="flashOverlay"></div>
+      <div id="entityShadow" hidden></div>
+    </section>
+
+    <nav class="controls">
+      <button data-focus="left">Left Door [A]</button>
+      <button data-focus="center">Center [S]</button>
+      <button data-focus="right">Right Door [D]</button>
+      <button data-focus="closet">Closet [C]</button>
+      <button data-focus="bed">Bed [B]</button>
+    </nav>
+
+    <section class="actions">
+      <button id="flashBtn">Flashlight [F]</button>
+      <button id="doorBtn">Hold Door [Space]</button>
+      <button id="stillBtn">Stillness [Shift]</button>
+      <button id="startBtn">Start Night</button>
+    </section>
+
+    <aside id="log" aria-live="polite"></aside>
+    <div id="gameOver" hidden>
+      <h1 id="gameOverTitle">You Survived</h1>
+      <p id="gameOverText"></p>
+      <button id="restartBtn">Restart</button>
+    </div>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
