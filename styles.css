@@ -1,0 +1,156 @@
+:root {
+  --bg: #050812;
+  --text: #dde2f7;
+  --danger: #ff5f7a;
+  --accent: #8db7ff;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  overflow: hidden;
+  background: radial-gradient(circle at 40% 20%, #1a2340 0%, var(--bg) 60%);
+  color: var(--text);
+  font-family: Inter, system-ui, sans-serif;
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  padding: 14px;
+  display: grid;
+  grid-template-rows: auto minmax(260px, 1fr) auto auto minmax(92px, 20vh);
+  gap: 10px;
+}
+
+.hud {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: center;
+  font-weight: 700;
+  gap: 10px;
+}
+
+#status { text-align: center; }
+
+#scene {
+  position: relative;
+  border: 1px solid #2d3a63;
+  border-radius: 12px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #202a4a, #12172a 45%, #0d101c);
+  min-height: 0;
+}
+
+#scene::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(90deg, rgba(255, 255, 255, .02) 0 2px, transparent 2px 7px);
+  pointer-events: none;
+}
+
+#roomLabel {
+  position: absolute;
+  left: 12px;
+  bottom: 10px;
+  opacity: .8;
+}
+
+#fearOverlay,
+#flashOverlay,
+#entityShadow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+#fearOverlay { background: radial-gradient(circle, transparent 35%, rgba(0, 0, 0, .55)); }
+#flashOverlay { opacity: 0; background: radial-gradient(circle at 50% 55%, rgba(255, 255, 220, .9), transparent 40%); }
+
+#entityShadow {
+  background: radial-gradient(circle at 50% 65%, rgba(0, 0, 0, .85), transparent 38%);
+  animation: pulse .4s infinite alternate;
+}
+
+.controls,
+.actions {
+  display: grid;
+  gap: 8px;
+}
+
+.controls { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.actions { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+button {
+  border: 1px solid #32437a;
+  background: #18203a;
+  color: var(--text);
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover { border-color: var(--accent); }
+
+button.ghost {
+  background: rgba(24, 32, 58, .4);
+}
+
+#log {
+  min-height: 0;
+  overflow: auto;
+  border: 1px solid #28355c;
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 13px;
+  background: rgba(5, 8, 16, .6);
+}
+
+#gameOver {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .72);
+  display: grid;
+  place-content: center;
+  gap: 10px;
+  text-align: center;
+  backdrop-filter: blur(2px);
+}
+
+.overlay-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.danger { color: var(--danger); font-weight: 700; }
+
+.view-left #scene { background: linear-gradient(180deg, #1e2039, #131629 45%, #080b12); }
+.view-right #scene { background: linear-gradient(180deg, #211e3f, #16132b 45%, #090713); }
+.view-closet #scene { background: linear-gradient(180deg, #27221f, #1f1b18 45%, #120f0e); }
+.view-bed #scene { background: linear-gradient(180deg, #1b2330, #121922 45%, #090d13); }
+
+@media (max-width: 900px) {
+  #app {
+    padding: 8px;
+    gap: 8px;
+    grid-template-rows: auto minmax(220px, 1fr) auto auto minmax(80px, 24vh);
+  }
+  .controls { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hud { grid-template-columns: 1fr; }
+  #status { text-align: left; }
+}
+
+@keyframes pulse {
+  from { opacity: .25; }
+  to { opacity: .8; }
+}
